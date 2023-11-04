@@ -6,12 +6,11 @@ require 'openai'
 load 'lib/etc_utilities.rb'
 load 'lib/openai.rb'
 
-if ENV['DISCO_TOKEN']
+if ENV['DISCO_TOKEN'] or ENV['OAI_KEY']
     token = ENV['DISCO_TOKEN']
 else
-    puts 'No token found in ENV(DISCO_TOKEN)'
+    puts 'No token found in ENV(DISCO_TOKEN) or ENV(OAI_KEY)'
 end
-# 
 
 # start discord
 discord_client = Discordrb::Bot.new token: token
