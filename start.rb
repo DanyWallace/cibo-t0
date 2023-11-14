@@ -20,6 +20,7 @@ discord_client = Discordrb::Bot.new token: token
 # All messages are catched here, mainly for logging
 discord_client.message do |event|
     puts "Message: #{event.author.name}:#{event.author.id}: #{event.content} - #{Time.now}"
+    # log to db?
 end
 
 # trigger on mention
@@ -58,10 +59,8 @@ discord_client.message(content: 'Cibo, Stop!') do |event|
     end
 end
 
-discord_client.run
-print 'Started Discord Client'
 
-Class App < Sinatra::Base do
+class App < Sinatra::Base
     configure do
         set port: 8080
     end
@@ -69,7 +68,14 @@ Class App < Sinatra::Base do
     get '/' do
         'Go away'
     end
+
 end
 
 Thread.new { App.run! }
-print 'Started Sinatra'
+puts 'Started Sinatra'
+
+
+puts 'Starting Discord Client'
+Thread.new { discord_client.run }
+#discord_client.run
+#puts 'Started Discord Client'
