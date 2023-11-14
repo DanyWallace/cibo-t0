@@ -37,4 +37,4 @@ COPY --chown=ruby:ruby . .
 
 # Start the server
 EXPOSE 8080
-CMD ["bundle", "exec", "ruby", "start.rb", "-p", "8080"]
+CMD ["bundle", "exec", "ruby", "start.rb", "-p", "8080", "-o", "0.0.0.0"]

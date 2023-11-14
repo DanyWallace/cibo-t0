@@ -59,19 +59,11 @@ discord_client.message(content: 'Cibo, Stop!') do |event|
     end
 end
 
-
-class App < Sinatra::Base
-    configure do
-        set port: 8080
-    end
-
-    get '/' do
-        'Go away'
-    end
-
+get '/' do
+    'Go away'
 end
 
-Thread.new { App.run! }
+#Thread.new { App.run! }
 puts 'Started Sinatra'
 
 
