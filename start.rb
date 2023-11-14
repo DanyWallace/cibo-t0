@@ -2,6 +2,7 @@ require 'discordrb'
 require 'json'
 require 'net/http'
 require 'openai'
+require 'sinatra'
 
 load 'lib/etc_utilities.rb'
 load 'lib/openai.rb'
@@ -58,3 +59,17 @@ discord_client.message(content: 'Cibo, Stop!') do |event|
 end
 
 discord_client.run
+print 'Started Discord Client'
+
+Class App < Sinatra::Base do
+    configure do
+        set port: 8080
+    end
+
+    get '/' do
+        'Go away'
+    end
+end
+
+Thread.new { App.run! }
+print 'Started Sinatra'
